@@ -1,0 +1,145 @@
+"""Support for Spot-Hinta.fi sensors."""
+from __future__ import annotations
+
+from collections.abc import Callable
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+
+from homeassistant.components.sensor import (
+    DOMAIN as SENSOR_DOMAIN,
+    SensorDeviceClass,
+    SensorEntity,
+    SensorEntityDescription,
+    SensorStateClass,
+)
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import CURRENCY_EURO, UnitOfEnergy
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.device_registry import DeviceEntryType
+from homeassistant.helpers.entity import DeviceInfo
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
+
+from .const import DOMAIN
+from .coordinator import SpotHintaData, SpotHintaDataUpdateCoordinator
+
+
+@dataclass
+class SpotHintaSensorEntityDescriptionMixin:
+    """Mixin for required keys."""
+
+    value_fn: Callable[[SpotHintaData], float | datetime | None]
+    service_type: str
+
+
+@dataclass
+class SpotHintaSensorEntityDescription(
+    SensorEntityDescription, SpotHintaSensorEntityDescriptionMixin
+):
+    """Describes Spot-Hinta.fi sensor entity."""
+
+
+SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
+    SpotHintaSensorEntityDescription(
+        key="current_hour_price",
+        name="Current hour",
+        service_type="today_energy",
+        state_class=SensorStateClass.MEASUREMENT,
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.current_price,
+    ),
+    SpotHintaSensorEntityDescription(
+        key="next_hour_price",
+        name="Next hour",
+        service_type="today_energy",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.price_at_time(
+            data.energy_today.utcnow() + timedelta(hours=1)
+        ),
+    ),
+    SpotHintaSensorEntityDescription(
+        key="average_price",
+        name="Average - Today",
+        service_type="today_energy",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.average_price,
+    ),
+    SpotHintaSensorEntityDescription(
+        key="max_price",
+        name="Highest price - Today",
+        service_type="today_energy",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.extreme_prices[1],
+    ),
+    SpotHintaSensorEntityDescription(
+        key="min_price",
+        name="Lowest price - Today",
+        service_type="today_energy",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.extreme_prices[0],
+    ),
+    SpotHintaSensorEntityDescription(
+        key="highest_price_time",
+        name="Time of highest price - Today",
+        service_type="today_energy",
+        device_class=SensorDeviceClass.TIMESTAMP,
+        value_fn=lambda data: data.energy_today.highest_price_time,
+    ),
+    SpotHintaSensorEntityDescription(
+        key="lowest_price_time",
+        name="Time of lowest price - Today",
+        service_type="today_energy",
+        device_class=SensorDeviceClass.TIMESTAMP,
+        value_fn=lambda data: data.energy_today.lowest_price_time,
+    ),
+)
+
+
+async def async_setup_entry(
+    hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
+) -> None:
+    """Set up Spot-Hinta.fi sensors based on a config entry."""
+    coordinator: SpotHintaDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
+    async_add_entities(
+        SpotHintaSensorEntity(coordinator=coordinator, description=description)
+        for description in SENSORS
+    )
+
+
+class SpotHintaSensorEntity(
+    CoordinatorEntity[SpotHintaDataUpdateCoordinator], SensorEntity
+):
+    """Defines a Spot-Hinta.fi sensor."""
+
+    _attr_has_entity_name = True
+    _attr_attribution = "Data provided by Spot-Hinta.fi"
+    entity_description: SpotHintaSensorEntityDescription
+
+    def __init__(
+        self,
+        *,
+        coordinator: SpotHintaDataUpdateCoordinator,
+        description: SpotHintaSensorEntityDescription,
+    ) -> None:
+        """Initialize Spot-Hinta.fi sensor."""
+        super().__init__(coordinator=coordinator)
+        self.entity_description = description
+        self.entity_id = f"{SENSOR_DOMAIN}.{DOMAIN}_{coordinator.region.name}_{description.service_type}_{description.key}"
+        self._attr_unique_id = f"{coordinator.config_entry.entry_id}_{description.service_type}_{description.key}"
+        self._attr_device_info = DeviceInfo(
+            entry_type=DeviceEntryType.SERVICE,
+            identifiers={
+                (
+                    DOMAIN,
+                    f"{coordinator.config_entry.entry_id}_{description.service_type}",
+                )
+            },
+            configuration_url="https://spot-hinta.fi",
+            manufacturer="Spot-Hinta.fi",
+            name=f"Energy spot prices for {coordinator.region.name}",
+        )
+
+    @property
+    def native_value(self) -> float | datetime | None:
+        """Return the state of the sensor."""
+        return self.entity_description.value_fn(self.coordinator.data)

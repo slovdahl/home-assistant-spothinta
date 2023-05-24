@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Select the region to get energy spot prices for.",
+        "data": {
+          "region": "Region"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Already configured"
+    },
+    "error": {
+      "invalid_region": "Invalid region"
+    }
+  }
+}
