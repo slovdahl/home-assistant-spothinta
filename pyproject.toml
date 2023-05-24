@@ -22,6 +22,9 @@ homeassistant = ">=2023.5.0"
 pytest-homeassistant-custom-component = ">=0.3.1"
 black = "^22.12"
 isort = "^5.12.0"
+mypy = ">=1.0,<1.4"
+pylint = "^2.16.1"
+yamllint = "^1.31.0"
 
 [tool.isort]
 # https://github.com/PyCQA/isort/wiki/isort-Settings
@@ -36,3 +39,31 @@ forced_separate = [
     "tests",
 ]
 combine_as_imports = true
+
+[tool.pylint.MASTER]
+extension-pkg-whitelist = [
+  "pydantic"
+]
+ignore = [
+  "tests"
+]
+
+[tool.pylint."MESSAGES CONTROL"]
+disable= [
+    "duplicate-code",
+    "format",
+]
+
+[tool.pylint.SIMILARITIES]
+ignore-imports = true
+
+[tool.pylint.FORMAT]
+max-line-length = 88
+
+[tool.mypy]
+# Specify the target platform details in config, so your developers are
+# free to run mypy on Windows, Linux, or macOS and get consistent
+# results.
+platform = "linux"
+python_version = "3.10"
+ignore_missing_imports = true
