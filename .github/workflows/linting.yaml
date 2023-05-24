@@ -79,7 +79,7 @@ jobs:
       - name: 🏗 Install Python dependencies
         run: poetry install --no-interaction
       - name: 🚀 Run pylint
-        run: poetry run pylint --all-files
+        run: poetry run pylint custom_components/ tests/
 
   yamllint:
     name: yamllint
