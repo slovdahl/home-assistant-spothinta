@@ -1,15 +1,15 @@
 {
   "domain": "spothinta",
-  "version": "0.1.0",
   "name": "Spot-Hinta.fi",
   "codeowners": [
     "@slovdahl"
   ],
   "config_flow": true,
   "documentation": "https://github.com/slovdahl/home-assistant-spothinta",
-  "issue_tracker": "https://github.com/slovdahl/home-assistant-spothinta/issues",
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/slovdahl/home-assistant-spothinta/issues",
   "requirements": [
-    "spothinta==0.1.1"
-  ]
+    "spothinta==0.2.0"
+  ],
+  "version": "0.1.0"
 }
