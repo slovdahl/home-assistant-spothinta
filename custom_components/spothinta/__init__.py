@@ -36,5 +36,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload spot-hinta.fi config entry."""
     if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
-        hass.data[DOMAIN].pop(entry.entry_id)
+        coordinator: SpotHintaDataUpdateCoordinator = hass.data[DOMAIN].pop(
+            entry.entry_id
+        )
+        if coordinator.future_refresh:
+            coordinator.future_refresh()
+
     return unload_ok
