@@ -124,23 +124,24 @@ frozenlist = ">=1.1.0"
 
 [[package]]
 name = "anyio"
-version = "3.6.2"
+version = "3.7.0"
 description = "High level compatibility layer for multiple asynchronous event loop implementations"
 optional = false
-python-versions = ">=3.6.2"
+python-versions = ">=3.7"
 files = [
-    {file = "anyio-3.6.2-py3-none-any.whl", hash = "sha256:fbbe32bd270d2a2ef3ed1c5d45041250284e31fc0a4df4a5a6071842051a51e3"},
-    {file = "anyio-3.6.2.tar.gz", hash = "sha256:25ea0d673ae30af41a0c442f81cf3b38c7e79fdc7b60335a4c14e05eb0947421"},
+    {file = "anyio-3.7.0-py3-none-any.whl", hash = "sha256:eddca883c4175f14df8aedce21054bfca3adb70ffe76a9f607aef9d7fa2ea7f0"},
+    {file = "anyio-3.7.0.tar.gz", hash = "sha256:275d9973793619a5374e1c89a4f4ad3f4b0a5510a2b5b939444bee8f4c4d37ce"},
 ]
 
 [package.dependencies]
+exceptiongroup = {version = "*", markers = "python_version < \"3.11\""}
 idna = ">=2.8"
 sniffio = ">=1.1"
 
 [package.extras]
-doc = ["packaging", "sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme"]
-test = ["contextlib2", "coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "mock (>=4)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (<0.15)", "uvloop (>=0.15)"]
-trio = ["trio (>=0.16,<0.22)"]
+doc = ["Sphinx (>=6.1.0)", "packaging", "sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme", "sphinxcontrib-jquery"]
+test = ["anyio[trio]", "coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "mock (>=4)", "psutil (>=5.9)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (>=0.17)"]
+trio = ["trio (<0.22)"]
 
 [[package]]
 name = "astral"
@@ -2126,13 +2127,13 @@ files = [
 
 [[package]]
 name = "spothinta-api"
-version = "0.2.0"
+version = "0.3.0"
 description = "Asynchronous Python client providing energy prices from spot-hinta.fi"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "spothinta_api-0.2.0-py3-none-any.whl", hash = "sha256:470eca3cac094d21745c8b9a69dcf31f2556ccd2d4c2156f531ba900b5699a4c"},
-    {file = "spothinta_api-0.2.0.tar.gz", hash = "sha256:8e9c7bac4c2e2367e61f3660b29b92db4d6b1b7a031f961642bf1a604437b630"},
+    {file = "spothinta_api-0.3.0-py3-none-any.whl", hash = "sha256:54bcdd6edf6757c4eb24b89c74d16bd76e82f3acf53697f23a056725e5609236"},
+    {file = "spothinta_api-0.3.0.tar.gz", hash = "sha256:28feeeebaee01c335c0bb298030c48a76ef1777ca66143d385462c2a8661043a"},
 ]
 
 [package.dependencies]
@@ -2567,4 +2568,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "9e379f2f34254b27a4be6095404d7219d796003c334ae8036a59248f6f35c653"
+content-hash = "43151009d1a4af59a7c6b64b4e59bda81ba39f55cf4ea58a118f25bf2a6544cc"

@@ -69,14 +69,14 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         name="Highest price - Today",
         service_type="today_energy",
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
-        value_fn=lambda data: data.energy_today.extreme_prices[1],
+        value_fn=lambda data: data.energy_today.highest_price_today,
     ),
     SpotHintaSensorEntityDescription(
         key="min_price",
         name="Lowest price - Today",
         service_type="today_energy",
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
-        value_fn=lambda data: data.energy_today.extreme_prices[0],
+        value_fn=lambda data: data.energy_today.lowest_price_today,
     ),
     SpotHintaSensorEntityDescription(
         key="highest_price_time",
