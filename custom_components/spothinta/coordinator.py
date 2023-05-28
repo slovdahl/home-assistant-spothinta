@@ -56,7 +56,7 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
 
         now = dt_util.utcnow()
 
-        if has_prices_for_tomorrow(self.current_data):
+        if self.current_data is not None and has_prices_for_tomorrow(self.current_data):
             # Trigger an update of the sensors at the top of the next hour.
             next_update_at = now.replace(minute=0) + timedelta(hours=1)
 
@@ -83,6 +83,7 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
             try:
                 self.current_data = await self.spothinta.energy_prices(self.region)
             except SpotHintaConnectionError as err:
+                _LOGGER.warning("Failed to get energy prices", exc_info=True)
                 raise UpdateFailed(
                     "Error communicating with Spot-Hinta.fi API"
                 ) from err
@@ -91,11 +92,11 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
             _LOGGER.debug("Got prices for tomorrow")
             next_update_at = now.replace(minute=0, second=0) + timedelta(hours=1)
         elif now.hour >= 11:
+            next_update_at = now + timedelta(minutes=3)
             _LOGGER.debug(
                 "Tomorrow's prices not yet available, next check: %s",
                 str(next_update_at),
             )
-            next_update_at = now + timedelta(minutes=3)
         else:
             next_update_at = now.replace(minute=0, second=0) + timedelta(hours=1)
 
