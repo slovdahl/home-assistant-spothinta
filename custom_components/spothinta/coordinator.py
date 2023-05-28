@@ -32,6 +32,7 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
 
     config_entry: ConfigEntry
     region: Region
+    current_data: Electricity | None
 
     def __init__(self, hass: HomeAssistant, region: Region) -> None:
         """Initialize global Spot-Hinta.fi data updater."""
@@ -41,9 +42,10 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
             name=f"{DOMAIN}_{region.name}",
         )
 
-        self.future_refresh: CALLBACK_TYPE | None = None
+        self.future_update: CALLBACK_TYPE | None = None
         self.region = region
         self.spothinta = SpotHinta(session=async_get_clientsession(hass))
+        self.current_data = None
 
     async def async_request_update(self, *_) -> None:
         """Request update from coordinator."""
@@ -54,51 +56,64 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
 
         now = dt_util.utcnow()
 
-        try:
-            energy_prices = await self.spothinta.energy_prices(self.region)
-        except SpotHintaConnectionError as err:
-            next_update_at = now + timedelta(minutes=3)
+        if has_prices_for_tomorrow(self.current_data):
+            # Trigger an update of the sensors at the top of the next hour.
+            next_update_at = now.replace(minute=0) + timedelta(hours=1)
 
-            self.future_refresh = async_track_point_in_time(
+            self.future_update = async_track_point_in_time(
                 self.hass, self.async_request_update, next_update_at
             )
 
-            raise UpdateFailed("Error communicating with Spot-Hinta.fi API") from err
+            return SpotHintaData(energy_today=self.current_data)
 
-        random_delay = randint(0, 300)
-        if has_prices_for_tomorrow(energy_prices):
-            # The next time the prices are updated: tomorrow ~11.00 UTC
-            next_update_at = now.replace(
-                day=now.day + 1, hour=11, minute=0
-            ) + timedelta(seconds=random_delay)
+        if self.current_data is None or now.hour >= 11:
+            # We want to get the prices for tomorrow, but we want to avoid
+            # having all instances of the integration polling at the same second.
+            if self.current_data is not None and now.minute == 0 and now.second == 0:
+                random_delay = randint(0, 120)
+                next_update_at = now + timedelta(seconds=random_delay)
+                _LOGGER.debug("Getting prices for tomorrow in %s seconds", random_delay)
+
+                self.future_update = async_track_point_in_time(
+                    self.hass, self.async_request_update, next_update_at
+                )
+
+                return SpotHintaData(energy_today=self.current_data)
+
+            try:
+                self.current_data = await self.spothinta.energy_prices(self.region)
+            except SpotHintaConnectionError as err:
+                raise UpdateFailed(
+                    "Error communicating with Spot-Hinta.fi API"
+                ) from err
+
+        if has_prices_for_tomorrow(self.current_data):
+            _LOGGER.debug("Got prices for tomorrow")
+            next_update_at = now.replace(minute=0, second=0) + timedelta(hours=1)
+        elif now.hour >= 11:
             _LOGGER.debug(
-                "Got prices for tomorrow, next refresh scheduled for tomorrow: %s",
+                "Tomorrow's prices not yet available, next check: %s",
                 str(next_update_at),
             )
-        elif now.hour < 11:
-            # New prices will be available starting from 11.00 UTC
-            next_update_at = now.replace(hour=11, minute=0) + timedelta(
-                seconds=random_delay
-            )
-            _LOGGER.debug("Next check for new prices: %s", str(next_update_at))
-        else:
-            # 11.00 UTC has passed but still no new prices, try again in a moment
             next_update_at = now + timedelta(minutes=3)
-            _LOGGER.debug(
-                "New prices not yet available, next check: %s", str(next_update_at)
-            )
+        else:
+            next_update_at = now.replace(minute=0, second=0) + timedelta(hours=1)
 
-        self.future_refresh = async_track_point_in_time(
+        _LOGGER.debug("Next update: %s", str(next_update_at))
+        self.future_update = async_track_point_in_time(
             self.hass, self.async_request_update, next_update_at
         )
 
         return SpotHintaData(
-            energy_today=energy_prices,
+            energy_today=self.current_data,
         )
 
 
-def has_prices_for_tomorrow(energy_prices: Electricity) -> bool:
+def has_prices_for_tomorrow(energy_prices: Electricity | None) -> bool:
     """Returns true if there are prices for tomorrow in the given energy prices"""
+    if energy_prices is None:
+        return False
+
     now = dt_util.utcnow()
     for timestamp in energy_prices.prices.keys():
         if timestamp.day > now.day:

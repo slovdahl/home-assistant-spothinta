@@ -39,7 +39,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         coordinator: SpotHintaDataUpdateCoordinator = hass.data[DOMAIN].pop(
             entry.entry_id
         )
-        if coordinator.future_refresh:
-            coordinator.future_refresh()
+        if coordinator.future_update:
+            coordinator.future_update()
 
     return unload_ok
