@@ -84,6 +84,19 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
                 self.current_data = await self.spothinta.energy_prices(self.region)
             except SpotHintaConnectionError as err:
                 _LOGGER.warning("Failed to get energy prices", exc_info=True)
+
+                if self.current_data is not None:
+                    next_update_at = (
+                        now + timedelta(minutes=5) + timedelta(seconds=random_delay)
+                    )
+                    _LOGGER.debug("Retrying fetching energy prices %s", next_update_at)
+
+                    self.future_update = async_track_point_in_time(
+                        self.hass, self.async_request_update, next_update_at
+                    )
+
+                    return SpotHintaData(energy_today=self.current_data)
+
                 raise UpdateFailed(
                     "Error communicating with Spot-Hinta.fi API"
                 ) from err
