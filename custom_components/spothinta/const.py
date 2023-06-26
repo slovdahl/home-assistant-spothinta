@@ -11,5 +11,6 @@ SCAN_INTERVAL = timedelta(hours=1)
 THRESHOLD_HOUR: Final = 12
 
 SERVICE_TYPE_DEVICE_NAMES = {
-    "today_energy": "Energy market price",
+    "today_energy": "Energy market prices today",
+    "tomorrow_energy": "Energy market prices tomorrow",
 }

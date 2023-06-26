@@ -65,11 +65,25 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         value_fn=lambda data: data.energy_today.average_price_today,
     ),
     SpotHintaSensorEntityDescription(
+        key="average_price",
+        name="Average - Tomorrow",
+        service_type="tomorrow_energy",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.average_price_tomorrow,
+    ),
+    SpotHintaSensorEntityDescription(
         key="max_price",
         name="Highest price - Today",
         service_type="today_energy",
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
         value_fn=lambda data: data.energy_today.highest_price_today,
+    ),
+    SpotHintaSensorEntityDescription(
+        key="max_price",
+        name="Highest price - Tomorrow",
+        service_type="tomorrow_energy",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.highest_price_tomorrow,
     ),
     SpotHintaSensorEntityDescription(
         key="min_price",
@@ -79,6 +93,13 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         value_fn=lambda data: data.energy_today.lowest_price_today,
     ),
     SpotHintaSensorEntityDescription(
+        key="min_price",
+        name="Lowest price - Tomorrow",
+        service_type="tomorrow_energy",
+        native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
+        value_fn=lambda data: data.energy_today.lowest_price_tomorrow,
+    ),
+    SpotHintaSensorEntityDescription(
         key="highest_price_time",
         name="Time of highest price - Today",
         service_type="today_energy",
@@ -86,11 +107,25 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         value_fn=lambda data: data.energy_today.highest_price_time_today,
     ),
     SpotHintaSensorEntityDescription(
+        key="highest_price_time",
+        name="Time of highest price - Tomorrow",
+        service_type="tomorrow_energy",
+        device_class=SensorDeviceClass.TIMESTAMP,
+        value_fn=lambda data: data.energy_today.highest_price_time_tomorrow,
+    ),
+    SpotHintaSensorEntityDescription(
         key="lowest_price_time",
         name="Time of lowest price - Today",
         service_type="today_energy",
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda data: data.energy_today.lowest_price_time_today,
+    ),
+    SpotHintaSensorEntityDescription(
+        key="lowest_price_time",
+        name="Time of lowest price - Tomorrow",
+        service_type="tomorrow_energy",
+        device_class=SensorDeviceClass.TIMESTAMP,
+        value_fn=lambda data: data.energy_today.lowest_price_time_tomorrow,
     ),
 )
 
