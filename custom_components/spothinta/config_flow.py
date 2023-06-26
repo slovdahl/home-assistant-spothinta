@@ -1,4 +1,5 @@
 """Config flow for Spot-Hinta.fi integration."""
+
 from __future__ import annotations
 
 from typing import Any

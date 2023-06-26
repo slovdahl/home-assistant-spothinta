@@ -1,4 +1,5 @@
 """Constants for the Spot-Hinta.fi integration."""
+
 from __future__ import annotations
 
 from datetime import timedelta
