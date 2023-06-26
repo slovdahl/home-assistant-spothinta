@@ -54,7 +54,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         service_type="today_energy",
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
         value_fn=lambda data: data.energy_today.price_at_time(
-            data.energy_today.utcnow() + timedelta(hours=1)
+            data.energy_today.now_in_timezone() + timedelta(hours=1)
         ),
     ),
     SpotHintaSensorEntityDescription(
@@ -62,7 +62,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         name="Average - Today",
         service_type="today_energy",
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
-        value_fn=lambda data: data.energy_today.average_price,
+        value_fn=lambda data: data.energy_today.average_price_today,
     ),
     SpotHintaSensorEntityDescription(
         key="max_price",
@@ -83,14 +83,14 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         name="Time of highest price - Today",
         service_type="today_energy",
         device_class=SensorDeviceClass.TIMESTAMP,
-        value_fn=lambda data: data.energy_today.highest_price_time,
+        value_fn=lambda data: data.energy_today.highest_price_time_today,
     ),
     SpotHintaSensorEntityDescription(
         key="lowest_price_time",
         name="Time of lowest price - Today",
         service_type="today_energy",
         device_class=SensorDeviceClass.TIMESTAMP,
-        value_fn=lambda data: data.energy_today.lowest_price_time,
+        value_fn=lambda data: data.energy_today.lowest_price_time_today,
     ),
 )
 
