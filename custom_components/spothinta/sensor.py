@@ -13,7 +13,7 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CURRENCY_EURO, UnitOfEnergy
+from homeassistant.const import CURRENCY_EURO, EntityCategory, UnitOfEnergy
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo
@@ -75,6 +75,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="max_price_today",
         name="Highest price - Today",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
         value_fn=lambda data: data.energy_today.highest_price_today,
     ),
@@ -82,6 +83,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="max_price_tomorrow",
         name="Highest price - Tomorrow",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
         value_fn=lambda data: data.energy_today.highest_price_tomorrow,
     ),
@@ -89,6 +91,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="min_price_today",
         name="Lowest price - Today",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
         value_fn=lambda data: data.energy_today.lowest_price_today,
     ),
@@ -96,6 +99,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="min_price_tomorrow",
         name="Lowest price - Tomorrow",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
         value_fn=lambda data: data.energy_today.lowest_price_tomorrow,
     ),
@@ -103,6 +107,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="highest_price_time_today",
         name="Time of highest price - Today",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda data: data.energy_today.highest_price_time_today,
     ),
@@ -110,6 +115,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="highest_price_time_tomorrow",
         name="Time of highest price - Tomorrow",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda data: data.energy_today.highest_price_time_tomorrow,
     ),
@@ -117,6 +123,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="lowest_price_time_today",
         name="Time of lowest price - Today",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda data: data.energy_today.lowest_price_time_today,
     ),
@@ -124,6 +131,7 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         key="lowest_price_time_tomorrow",
         name="Time of lowest price - Tomorrow",
         service_type="energy",
+        entity_category=EntityCategory.DIAGNOSTIC,
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda data: data.energy_today.lowest_price_time_tomorrow,
     ),
