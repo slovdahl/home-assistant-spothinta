@@ -67,10 +67,11 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
             return SpotHintaData(energy_today=self.current_data)
 
         if self.current_data is None or now.hour >= 11:
+            random_delay = randint(0, 120)
+
             # We want to get the prices for tomorrow, but we want to avoid
             # having all instances of the integration polling at the same second.
             if self.current_data is not None and now.minute == 0 and now.second == 0:
-                random_delay = randint(0, 120)
                 next_update_at = now + timedelta(seconds=random_delay)
                 _LOGGER.debug("Getting prices for tomorrow in %s seconds", random_delay)
 
