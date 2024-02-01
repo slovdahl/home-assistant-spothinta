@@ -88,4 +88,7 @@ venv.bak/
 # Pyre type checker
 .pyre/
 
+# Other
+.DS_Store
+
 setup.py
