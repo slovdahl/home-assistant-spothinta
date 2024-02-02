@@ -1,4 +1,5 @@
 """Support for Spot-Hinta.fi sensors."""
+
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -24,7 +25,7 @@ from .const import DOMAIN
 from .coordinator import SpotHintaData, SpotHintaDataUpdateCoordinator
 
 
-@dataclass
+@dataclass(frozen=True)
 class SpotHintaSensorEntityDescriptionMixin:
     """Mixin for required keys."""
 
@@ -32,7 +33,7 @@ class SpotHintaSensorEntityDescriptionMixin:
     service_type: str
 
 
-@dataclass
+@dataclass(frozen=True)
 class SpotHintaSensorEntityDescription(
     SensorEntityDescription, SpotHintaSensorEntityDescriptionMixin
 ):
@@ -46,7 +47,9 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         service_type="energy",
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
-        value_fn=lambda data: data.energy_today.current_price,
+        value_fn=lambda data: (
+            data.energy_today.current_price if data.energy_today else None
+        ),
     ),
     SpotHintaSensorEntityDescription(
         key="next_hour_price",
