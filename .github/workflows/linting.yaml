@@ -13,7 +13,7 @@ env:
 
 jobs:
   black:
-    name: black
+    name: ruff
     runs-on: ubuntu-latest
     steps:
       - name: ⤵️ Check out code from GitHub
@@ -32,31 +32,8 @@ jobs:
           poetry config virtualenvs.in-project true
       - name: 🏗 Install Python dependencies
         run: poetry install --no-interaction
-      - name: 🚀 Run black on docs
-        run: poetry run black custom_components/ tests/
-
-  isort:
-    name: isort
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v4
-      - name: 🏗 Set up Poetry
-        run: pipx install poetry
-      - name: 🏗 Set up Python ${{ env.DEFAULT_PYTHON }}
-        id: python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.DEFAULT_PYTHON }}
-          cache: 'poetry'
-      - name: 🏗 Install workflow dependencies
-        run: |
-          poetry config virtualenvs.create true
-          poetry config virtualenvs.in-project true
-      - name: 🏗 Install Python dependencies
-        run: poetry install --no-interaction
-      - name: 🚀 Run isort
-        run: poetry run isort custom_components/ tests/
+      - name: 🚀 Run ruff
+        run: poetry run ruff custom_components/ tests/
 
   pylint:
     name: pylint
