@@ -1,4 +1,5 @@
 """The spot-hinta.fi integration."""
+
 from __future__ import annotations
 
 from spothinta_api.const import Region

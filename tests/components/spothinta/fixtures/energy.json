@@ -1,0 +1,290 @@
+[
+  {
+    "Rank": 11,
+    "DateTime": "2023-05-06T00:00:00+03:00",
+    "PriceNoTax": 0.0726,
+    "PriceWithTax": 0.0901
+  },
+  {
+    "Rank": 8,
+    "DateTime": "2023-05-06T01:00:00+03:00",
+    "PriceNoTax": 0.068,
+    "PriceWithTax": 0.0843
+  },
+  {
+    "Rank": 5,
+    "DateTime": "2023-05-06T02:00:00+03:00",
+    "PriceNoTax": 0.0639,
+    "PriceWithTax": 0.0792
+  },
+  {
+    "Rank": 3,
+    "DateTime": "2023-05-06T03:00:00+03:00",
+    "PriceNoTax": 0.0629,
+    "PriceWithTax": 0.078
+  },
+  {
+    "Rank": 6,
+    "DateTime": "2023-05-06T04:00:00+03:00",
+    "PriceNoTax": 0.0648,
+    "PriceWithTax": 0.0804
+  },
+  {
+    "Rank": 7,
+    "DateTime": "2023-05-06T05:00:00+03:00",
+    "PriceNoTax": 0.0656,
+    "PriceWithTax": 0.0814
+  },
+  {
+    "Rank": 9,
+    "DateTime": "2023-05-06T06:00:00+03:00",
+    "PriceNoTax": 0.0694,
+    "PriceWithTax": 0.086
+  },
+  {
+    "Rank": 14,
+    "DateTime": "2023-05-06T07:00:00+03:00",
+    "PriceNoTax": 0.0741,
+    "PriceWithTax": 0.0919
+  },
+  {
+    "Rank": 15,
+    "DateTime": "2023-05-06T08:00:00+03:00",
+    "PriceNoTax": 0.0772,
+    "PriceWithTax": 0.0957
+  },
+  {
+    "Rank": 23,
+    "DateTime": "2023-05-06T09:00:00+03:00",
+    "PriceNoTax": 0.0846,
+    "PriceWithTax": 0.1049
+  },
+  {
+    "Rank": 20,
+    "DateTime": "2023-05-06T10:00:00+03:00",
+    "PriceNoTax": 0.0793,
+    "PriceWithTax": 0.0984
+  },
+  {
+    "Rank": 16,
+    "DateTime": "2023-05-06T11:00:00+03:00",
+    "PriceNoTax": 0.0778,
+    "PriceWithTax": 0.0965
+  },
+  {
+    "Rank": 12,
+    "DateTime": "2023-05-06T12:00:00+03:00",
+    "PriceNoTax": 0.0726,
+    "PriceWithTax": 0.0901
+  },
+  {
+    "Rank": 10,
+    "DateTime": "2023-05-06T13:00:00+03:00",
+    "PriceNoTax": 0.0703,
+    "PriceWithTax": 0.0872
+  },
+  {
+    "Rank": 2,
+    "DateTime": "2023-05-06T14:00:00+03:00",
+    "PriceNoTax": 0.0558,
+    "PriceWithTax": 0.0691
+  },
+  {
+    "Rank": 1,
+    "DateTime": "2023-05-06T15:00:00+03:00",
+    "PriceNoTax": 0.05,
+    "PriceWithTax": 0.062
+  },
+  {
+    "Rank": 4,
+    "DateTime": "2023-05-06T16:00:00+03:00",
+    "PriceNoTax": 0.0632,
+    "PriceWithTax": 0.0783
+  },
+  {
+    "Rank": 13,
+    "DateTime": "2023-05-06T17:00:00+03:00",
+    "PriceNoTax": 0.0728,
+    "PriceWithTax": 0.0903
+  },
+  {
+    "Rank": 17,
+    "DateTime": "2023-05-06T18:00:00+03:00",
+    "PriceNoTax": 0.078,
+    "PriceWithTax": 0.0967
+  },
+  {
+    "Rank": 21,
+    "DateTime": "2023-05-06T19:00:00+03:00",
+    "PriceNoTax": 0.0816,
+    "PriceWithTax": 0.1012
+  },
+  {
+    "Rank": 24,
+    "DateTime": "2023-05-06T20:00:00+03:00",
+    "PriceNoTax": 0.0851,
+    "PriceWithTax": 0.1055
+  },
+  {
+    "Rank": 22,
+    "DateTime": "2023-05-06T21:00:00+03:00",
+    "PriceNoTax": 0.0828,
+    "PriceWithTax": 0.1026
+  },
+  {
+    "Rank": 19,
+    "DateTime": "2023-05-06T22:00:00+03:00",
+    "PriceNoTax": 0.0785,
+    "PriceWithTax": 0.0973
+  },
+  {
+    "Rank": 18,
+    "DateTime": "2023-05-06T23:00:00+03:00",
+    "PriceNoTax": 0.0784,
+    "PriceWithTax": 0.0972
+  },
+  {
+    "Rank": 22,
+    "DateTime": "2023-05-07T00:00:00+03:00",
+    "PriceNoTax": 0.0732,
+    "PriceWithTax": 0.0907
+  },
+  {
+    "Rank": 8,
+    "DateTime": "2023-05-07T01:00:00+03:00",
+    "PriceNoTax": 0.0614,
+    "PriceWithTax": 0.0761
+  },
+  {
+    "Rank": 10,
+    "DateTime": "2023-05-07T02:00:00+03:00",
+    "PriceNoTax": 0.0618,
+    "PriceWithTax": 0.0766
+  },
+  {
+    "Rank": 9,
+    "DateTime": "2023-05-07T03:00:00+03:00",
+    "PriceNoTax": 0.0617,
+    "PriceWithTax": 0.0765
+  },
+  {
+    "Rank": 11,
+    "DateTime": "2023-05-07T04:00:00+03:00",
+    "PriceNoTax": 0.062,
+    "PriceWithTax": 0.0769
+  },
+  {
+    "Rank": 12,
+    "DateTime": "2023-05-07T05:00:00+03:00",
+    "PriceNoTax": 0.0637,
+    "PriceWithTax": 0.079
+  },
+  {
+    "Rank": 13,
+    "DateTime": "2023-05-07T06:00:00+03:00",
+    "PriceNoTax": 0.0645,
+    "PriceWithTax": 0.08
+  },
+  {
+    "Rank": 14,
+    "DateTime": "2023-05-07T07:00:00+03:00",
+    "PriceNoTax": 0.066,
+    "PriceWithTax": 0.0819
+  },
+  {
+    "Rank": 24,
+    "DateTime": "2023-05-07T08:00:00+03:00",
+    "PriceNoTax": 0.0784,
+    "PriceWithTax": 0.0972
+  },
+  {
+    "Rank": 23,
+    "DateTime": "2023-05-07T09:00:00+03:00",
+    "PriceNoTax": 0.0759,
+    "PriceWithTax": 0.0941
+  },
+  {
+    "Rank": 17,
+    "DateTime": "2023-05-07T10:00:00+03:00",
+    "PriceNoTax": 0.0676,
+    "PriceWithTax": 0.0838
+  },
+  {
+    "Rank": 5,
+    "DateTime": "2023-05-07T11:00:00+03:00",
+    "PriceNoTax": 0.0374,
+    "PriceWithTax": 0.0464
+  },
+  {
+    "Rank": 2,
+    "DateTime": "2023-05-07T12:00:00+03:00",
+    "PriceNoTax": 0.0305,
+    "PriceWithTax": 0.0378
+  },
+  {
+    "Rank": 6,
+    "DateTime": "2023-05-07T13:00:00+03:00",
+    "PriceNoTax": 0.0393,
+    "PriceWithTax": 0.0487
+  },
+  {
+    "Rank": 4,
+    "DateTime": "2023-05-07T14:00:00+03:00",
+    "PriceNoTax": 0.0351,
+    "PriceWithTax": 0.0435
+  },
+  {
+    "Rank": 3,
+    "DateTime": "2023-05-07T15:00:00+03:00",
+    "PriceNoTax": 0.0307,
+    "PriceWithTax": 0.038
+  },
+  {
+    "Rank": 1,
+    "DateTime": "2023-05-07T16:00:00+03:00",
+    "PriceNoTax": 0.0301,
+    "PriceWithTax": 0.0373
+  },
+  {
+    "Rank": 7,
+    "DateTime": "2023-05-07T17:00:00+03:00",
+    "PriceNoTax": 0.0566,
+    "PriceWithTax": 0.0702
+  },
+  {
+    "Rank": 19,
+    "DateTime": "2023-05-07T18:00:00+03:00",
+    "PriceNoTax": 0.0689,
+    "PriceWithTax": 0.0854
+  },
+  {
+    "Rank": 20,
+    "DateTime": "2023-05-07T19:00:00+03:00",
+    "PriceNoTax": 0.0722,
+    "PriceWithTax": 0.0895
+  },
+  {
+    "Rank": 21,
+    "DateTime": "2023-05-07T20:00:00+03:00",
+    "PriceNoTax": 0.0723,
+    "PriceWithTax": 0.0896
+  },
+  {
+    "Rank": 18,
+    "DateTime": "2023-05-07T21:00:00+03:00",
+    "PriceNoTax": 0.0679,
+    "PriceWithTax": 0.0842
+  },
+  {
+    "Rank": 15,
+    "DateTime": "2023-05-07T22:00:00+03:00",
+    "PriceNoTax": 0.066,
+    "PriceWithTax": 0.0819
+  },
+  {
+    "Rank": 16,
+    "DateTime": "2023-05-07T23:00:00+03:00",
+    "PriceNoTax": 0.0668,
+    "PriceWithTax": 0.0828
+  }
+]
