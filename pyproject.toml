@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "home-assistant-spothinta"
-version = "0.3.1"
+version = "0.0.0"
 description = "Custom component for Home Assistant for fetching energy spot prices for the Nordic and Baltic market."
 authors = ["Sebastian Lövdahl <sebastian.lovdahl@hibox.fi>"]
 license = "MIT"
