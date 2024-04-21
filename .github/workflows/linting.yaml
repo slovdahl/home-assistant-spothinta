@@ -9,10 +9,10 @@ on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
 
 env:
-  DEFAULT_PYTHON: "3.11"
+  DEFAULT_PYTHON: "3.12"
 
 jobs:
-  black:
+  ruff:
     name: ruff
     runs-on: ubuntu-latest
     steps:
