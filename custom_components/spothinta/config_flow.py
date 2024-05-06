@@ -5,6 +5,7 @@ from typing import Any
 
 from spothinta_api.const import Region
 import voluptuous as vol
+
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.const import CONF_REGION
 from homeassistant.helpers.selector import SelectSelector, SelectSelectorConfig
