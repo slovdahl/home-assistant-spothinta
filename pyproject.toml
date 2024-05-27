@@ -18,7 +18,7 @@ python = ">=3.12,<3.13"
 spothinta-api = "^0.5.0"
 
 [tool.poetry.group.dev.dependencies]
-homeassistant = "~2024.5.3"
+homeassistant = "~2024.5.5"
 pytest-homeassistant-custom-component = ">=0.13.0"
 ruff = "^0.4.4"
 mypy = ">=1.0,<1.11"
