@@ -33,7 +33,7 @@ jobs:
       - name: 🏗 Install Python dependencies
         run: poetry install --no-interaction
       - name: 🚀 Run ruff
-        run: poetry run ruff custom_components/ tests/
+        run: poetry run ruff check custom_components/ tests/
 
   pylint:
     name: pylint
