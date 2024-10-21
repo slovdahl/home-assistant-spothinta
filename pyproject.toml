@@ -21,7 +21,7 @@ spothinta-api = "^0.6.5"
 homeassistant = "~2024.10.3"
 pytest-homeassistant-custom-component = ">=0.13.0"
 ruff = "^0.6.9"
-mypy = ">=1.0,<1.12"
+mypy = ">=1.0,<1.13"
 pylint = "^3.3.1"
 yamllint = "^1.35.1"
 
