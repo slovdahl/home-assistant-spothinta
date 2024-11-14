@@ -18,7 +18,7 @@ python = ">=3.12,<3.13"
 spothinta-api = "^0.6.5"
 
 [tool.poetry.group.dev.dependencies]
-homeassistant = "~2024.10.4"
+homeassistant = "~2024.11.1"
 pytest-homeassistant-custom-component = ">=0.13.0"
 ruff = "^0.7.3"
 mypy = ">=1.0,<1.14"
@@ -54,6 +54,7 @@ ignore = [
 
 [tool.pylint."MESSAGES CONTROL"]
 disable= [
+    "abstract-method",
     "duplicate-code",
     "format",
     "unexpected-keyword-arg",
