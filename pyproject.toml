@@ -54,6 +54,7 @@ ignore = [
 
 [tool.pylint."MESSAGES CONTROL"]
 disable= [
+    "abstract-method",
     "duplicate-code",
     "format",
     "unexpected-keyword-arg",
