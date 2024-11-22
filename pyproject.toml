@@ -15,7 +15,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
-spothinta-api = "^0.6.5"
+spothinta-api = "^0.7.0"
 
 [tool.poetry.group.dev.dependencies]
 homeassistant = "~2024.11.2"
