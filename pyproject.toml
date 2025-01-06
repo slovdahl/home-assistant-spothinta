@@ -20,7 +20,7 @@ spothinta-api = "^0.7.0"
 [tool.poetry.group.dev.dependencies]
 homeassistant = "~2025.1.0"
 pytest-homeassistant-custom-component = ">=0.13.0"
-ruff = "^0.8.4"
+ruff = "^0.8.6"
 mypy = ">=1.0,<1.15"
 pylint = "^3.3.3"
 yamllint = "^1.35.1"
