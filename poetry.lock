@@ -4233,14 +4233,14 @@ all = ["winrt-Windows.Foundation.Collections[all] (==2.3.0)", "winrt-Windows.Fou
 
 [[package]]
 name = "yamllint"
-version = "1.35.1"
+version = "1.36.1"
 description = "A linter for YAML files."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "yamllint-1.35.1-py3-none-any.whl", hash = "sha256:2e16e504bb129ff515b37823b472750b36b6de07963bd74b307341ef5ad8bdc3"},
-    {file = "yamllint-1.35.1.tar.gz", hash = "sha256:7a003809f88324fd2c877734f2d575ee7881dd9043360657cc8049c809eba6cd"},
+    {file = "yamllint-1.36.1-py3-none-any.whl", hash = "sha256:3e2ccd47ea12449837adf6b2c56fd9e31172ce42bc1470380806be461f25df66"},
+    {file = "yamllint-1.36.1.tar.gz", hash = "sha256:a287689daaafc301a80549b2d0170452ebfdcabd826e3fe3b4c66e322d4851fa"},
 ]
 
 [package.dependencies]
@@ -4350,4 +4350,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<3.14"
-content-hash = "9a9b297a8e9782855ed1d95b31dc3e67058951d9717a262d7dc635f703227915"
+content-hash = "baf26174065a5ab397c3427511b82f4949415fd4080060ee106bf1ac7a65611c"
