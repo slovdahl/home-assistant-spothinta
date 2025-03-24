@@ -22,7 +22,7 @@ homeassistant = "~2025.1.4"
 pytest-homeassistant-custom-component = ">=0.13.0"
 ruff = "^0.11.2"
 mypy = ">=1.0,<1.16"
-pylint = "^3.3.4"
+pylint = "^3.3.6"
 yamllint = "^1.37.0"
 
 [tool.ruff]
