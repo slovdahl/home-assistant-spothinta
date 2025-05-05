@@ -23,7 +23,7 @@ pytest-homeassistant-custom-component = ">=0.13.0"
 ruff = "^0.11.8"
 mypy = ">=1.0,<1.16"
 pylint = "^3.3.7"
-yamllint = "^1.37.0"
+yamllint = "^1.37.1"
 
 [tool.ruff]
 line-length = 88
