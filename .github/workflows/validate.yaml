@@ -1,5 +1,5 @@
 ---
-name: Validate with hassfest
+name: Validate
 
 on:  # yamllint disable-line rule:truthy
   push:
@@ -8,10 +8,19 @@ on:  # yamllint disable-line rule:truthy
   pull_request:
   schedule:
     - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
-  validate:
+  hassfest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: home-assistant/actions/hassfest@master
+  hacs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: HACS validation
+        uses: hacs/action@main
+        with:
+          category: integration
