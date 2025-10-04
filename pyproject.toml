@@ -14,7 +14,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.14"
+python = ">=3.13,<3.14"
 spothinta-api = "==0.7.2"
 
 [tool.poetry.group.dev.dependencies]
@@ -71,6 +71,6 @@ max-line-length = 88
 # free to run mypy on Windows, Linux, or macOS and get consistent
 # results.
 platform = "linux"
-python_version = "3.12"
+python_version = "3.13"
 ignore_missing_imports = true
 follow_imports = "silent"
