@@ -57,8 +57,12 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
         now = dt_util.utcnow()
 
         if self.current_data is not None and has_prices_for_tomorrow(self.current_data):
-            # Trigger an update of the sensors at the top of the next hour.
-            next_update_at = now.replace(minute=0) + timedelta(hours=1)
+            # Trigger an update of the sensors at the next quarter of the hour.
+            next_update_at = now + timedelta(minutes=15)
+            next_minute = next_update_at.minute // 15 * 15
+            next_update_at = next_update_at.replace(
+                minute=next_minute, second=0, microsecond=0, tzinfo=dt_util.UTC
+            )
 
             self.future_update = async_track_point_in_time(
                 self.hass, self.async_request_update, next_update_at
@@ -82,7 +86,7 @@ class SpotHintaDataUpdateCoordinator(DataUpdateCoordinator[SpotHintaData]):
                 return SpotHintaData(energy_today=self.current_data)
 
             try:
-                self.current_data = await self.spothinta.energy_prices(self.region)
+                self.current_data = await self.spothinta.energy_prices(region=self.region, resolution=timedelta(minutes=15))
             except SpotHintaConnectionError as err:
                 _LOGGER.warning("Failed to get energy prices", exc_info=True)
 
