@@ -28,7 +28,7 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
 class SpotHintaFlowHandler(ConfigFlow, domain=DOMAIN):  # type: ignore
     """Config flow for Spot-Hinta.fi integration."""
 
-    VERSION = 1
+    VERSION = 2
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
