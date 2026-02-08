@@ -10,7 +10,7 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/slovdahl/home-assistant-spothinta/issues",
   "requirements": [
-    "spothinta-api==0.8.0"
+    "spothinta-api==1.0.0"
   ],
   "version": "0.6.0"
 }
