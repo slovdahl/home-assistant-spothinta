@@ -14,11 +14,11 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.13,<3.14"
+python = ">=3.13.2,<3.14"
 spothinta-api = "==0.8.0"
 
 [tool.poetry.group.dev.dependencies]
-homeassistant = "~2025.4.4"
+homeassistant = "~2026.2.1"
 pytest-homeassistant-custom-component = ">=0.13.0"
 ruff = "^0.14.14"
 mypy = ">=1.0,<1.20"
