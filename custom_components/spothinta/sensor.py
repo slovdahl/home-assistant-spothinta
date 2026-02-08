@@ -42,8 +42,8 @@ class SpotHintaSensorEntityDescription(
 
 SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
     SpotHintaSensorEntityDescription(
-        key="current_hour_price",
-        name="Current hour",
+        key="current_price",
+        name="Current price",
         service_type="energy",
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
@@ -52,12 +52,12 @@ SENSORS: tuple[SpotHintaSensorEntityDescription, ...] = (
         ),
     ),
     SpotHintaSensorEntityDescription(
-        key="next_hour_price",
-        name="Next hour",
+        key="next_price",
+        name="Next price",
         service_type="energy",
         native_unit_of_measurement=f"{CURRENCY_EURO}/{UnitOfEnergy.KILO_WATT_HOUR}",
         value_fn=lambda data: data.energy_today.price_at_time(
-            data.energy_today.now_in_timezone() + timedelta(hours=1)
+            data.energy_today.now_in_timezone() + timedelta(minutes=15)
         ),
     ),
     SpotHintaSensorEntityDescription(
