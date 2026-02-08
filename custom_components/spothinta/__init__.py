@@ -10,8 +10,8 @@ from homeassistant.const import CONF_REGION, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers import entity_registry as er
-from spothinta.config_flow import SpotHintaFlowHandler
 
+from .config_flow import SpotHintaFlowHandler
 from .const import DOMAIN
 from .coordinator import SpotHintaDataUpdateCoordinator
 
