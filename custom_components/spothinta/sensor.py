@@ -170,7 +170,7 @@ class SpotHintaSensorEntity(
         """Initialize Spot-Hinta.fi sensor."""
         super().__init__(coordinator=coordinator)
         self.entity_description = description
-        self.entity_id = f"{SENSOR_DOMAIN}.{DOMAIN}_{coordinator.region.name}_{description.service_type}_{description.key}"
+        self.entity_id = f"{SENSOR_DOMAIN}.{DOMAIN}_{coordinator.region.name.lower()}_{description.service_type}_{description.key}"
         self._attr_unique_id = f"{coordinator.config_entry.entry_id}_{description.service_type}_{description.key}"
         self._attr_device_info = DeviceInfo(
             entry_type=DeviceEntryType.SERVICE,
