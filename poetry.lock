@@ -4299,14 +4299,14 @@ test = ["covdefaults (==2.3.0)", "pytest (==8.4.1)", "pytest-aiohttp (==1.1.0)",
 
 [[package]]
 name = "spothinta-api"
-version = "1.0.0"
+version = "2.0.0"
 description = "Asynchronous Python client providing energy prices from spot-hinta.fi"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "spothinta_api-1.0.0-py3-none-any.whl", hash = "sha256:9ea2af99721e3bd1040238c182d10f422cf784e7ff76d6c12cd7cda5e5f8877e"},
-    {file = "spothinta_api-1.0.0.tar.gz", hash = "sha256:50a4e68b6c92f7bf502302358c02c3a55872570529458e495bab002f235f07bc"},
+    {file = "spothinta_api-2.0.0-py3-none-any.whl", hash = "sha256:7a6ee64915364b1511c270d2a38e12f186735f3ee90ce7f1d2028947f32e2f3b"},
+    {file = "spothinta_api-2.0.0.tar.gz", hash = "sha256:0e6bbd187a61213678d9c4e78e9054307818ae8c3e7284cb77a692aaf1ffc659"},
 ]
 
 [package.dependencies]
@@ -5267,4 +5267,4 @@ ifaddr = ">=0.1.7"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13.2,<3.14"
-content-hash = "4f12068c3317890922c7e3669b3cb327acfb906204289e2c3f7eecfea18471c4"
+content-hash = "3219f80303fb0784cf08d28a5b6cc77bfeb1eed7cda7622b56034300b2758850"
