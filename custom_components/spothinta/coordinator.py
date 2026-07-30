@@ -151,7 +151,7 @@ def has_prices_for_tomorrow_until_next_day_refresh(energy_prices: Electricity | 
         return False
 
     now = dt_util.utcnow()
-    for timestamp in energy_prices.prices.keys():
+    for timestamp in energy_prices.prices:
         # The prices for tomorrow are usually published around 13-14:00 CET.
         # Depending on the time of the year, this is either 11-12:00 or
         # 12-13:00 UTC. If we have prices until 12:00 UTC tomorrow, we can
@@ -169,7 +169,7 @@ def has_prices_for_tomorrow(energy_prices: Electricity | None) -> bool:
         return False
 
     now = dt_util.utcnow()
-    for timestamp in energy_prices.prices.keys():
+    for timestamp in energy_prices.prices:
         if timestamp.day > now.day:
             return True
 
